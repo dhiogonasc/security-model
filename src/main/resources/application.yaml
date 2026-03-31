@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: security.model
+  datasource:
+    url: jdbc:postgresql://localhost:5432/security-model
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+jwt:
+  public:
+    key: classpath:public.pem
+  private:
+    key: classpath:key.pem
+
+logging:
+  level:
+    org.springframework.security: DEBUG
