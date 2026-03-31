@@ -1,7 +1,7 @@
 package com.security.security.model.controller.request;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public record UserRequestDTO(
 
@@ -12,6 +12,6 @@ public record UserRequestDTO(
         String email,
 
         @NotBlank(message = "Senha obrigatório")
-        @Min(value = 6, message = "Deve possuir ao mínimo 6 caracteres")
+        @Size(min = 6, message = "Deve possuir ao mínimo 6 caracteres")
         String password
 ) {}
