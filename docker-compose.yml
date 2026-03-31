@@ -26,8 +26,8 @@ services:
       - "8080:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/security_db
-      SPRING_DATASOURCE_USERNAME: user_dev
-      SPRING_DATASOURCE_PASSWORD: password_dev
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     depends_on:
       db:
