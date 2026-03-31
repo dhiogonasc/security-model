@@ -2,9 +2,9 @@ spring:
   application:
     name: security.model
   datasource:
-    url: jdbc:postgresql://localhost:5432/security-model
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://db:5432/security_db
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:root}
 
   jpa:
     hibernate:
@@ -13,9 +13,9 @@ spring:
 
 jwt:
   public:
-    key: classpath:public.pem
+    key: ${JWT_PUBLIC_KEY:classpath:public.pem}
   private:
-    key: classpath:key.pem
+    key: ${JWT_PRIVATE_KEY:classpath:key.pem}
 
 logging:
   level:

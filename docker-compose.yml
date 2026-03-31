@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: security_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./data:/docker-entrypoint-initdb.d
+    networks:
+      - security-net
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U user_dev -d security_db" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: spring_app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/security_db
+      SPRING_DATASOURCE_USERNAME: user_dev
+      SPRING_DATASOURCE_PASSWORD: password_dev
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - security-net
+
+networks:
+  security-net:
+    driver: bridge
+
+volumes:
+  db_data:
