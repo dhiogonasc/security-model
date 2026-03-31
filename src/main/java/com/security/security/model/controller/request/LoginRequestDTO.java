@@ -11,6 +11,5 @@ public record LoginRequestDTO(
         String email,
 
         @NotBlank(message = "Senha obrigatória")
-        @Min(value = 6, message = "Deve possuir ao mínimo 6 caracteres")
         String password
 ) {}
