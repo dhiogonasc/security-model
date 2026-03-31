@@ -1,2 +1,2 @@
 # security-model
-User authentication - Angular - Spring Boot - PostgreSQL
+User authentication - Spring Boot - PostgreSQL
